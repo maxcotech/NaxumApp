@@ -18,7 +18,7 @@ export default function DrawerContent(props){
             </Center>
             <Box mx={15}>
                 <CustomAccordion
-                    title={<HStack space={3}>
+                    title={<HStack space={3} py={3}>
                         <MaterialCommunityIcons size={20} color="primary.600" name="lock" />
                         <Text color="primary.600">Profile</Text>
                     </HStack>}
@@ -30,10 +30,12 @@ export default function DrawerContent(props){
                     </HStack>
                 </TouchableOpacity>
                 </CustomAccordion>
-                <HStack py={3} space={3}>
-                    <MaterialCommunityIcons size={20} color="gray" name="power" />
-                    <Text color="primary.600">Logout</Text>
-                </HStack>
+                <TouchableOpacity  onPress={() => navigation.navigate(routes.logout as never)}>
+                    <HStack py={3} space={3}>
+                        <MaterialCommunityIcons size={20} color="gray" name="power" />
+                        <Text color="primary.600">Logout</Text>
+                    </HStack>
+                </TouchableOpacity>
             </Box>
             
         </DrawerContentScrollView>

@@ -7,6 +7,7 @@ import Home from "../screens/Home/Home";
 import DrawerNavigation from './DrawerNavigation';
 import AddContact from './../screens/AddContact/AddContact';
 import Profile from "../screens/Profile/Profile";
+import Logout from "../screens/Logout/Logout";
 
 const Stack = createNativeStackNavigator();
 export default function IndexNavigation(){
@@ -17,11 +18,13 @@ export default function IndexNavigation(){
                 name={routes.login}
                 component={Login}
             />
-            {/* <Stack.Screen
+
+            <Stack.Screen 
                 options={{ headerShown: false, animation: "slide_from_right" }} 
-                name={routes.home}
-                component={Home}
-            /> */}
+                name={routes.logout}
+                component={Logout}
+            />
+          
             <Stack.Screen
                 options={{ headerShown: false, animation: "slide_from_right" }} 
                 name={routes.accountList}
@@ -33,7 +36,7 @@ export default function IndexNavigation(){
                 component={DrawerNavigation}
             />
             <Stack.Screen 
-                options={{ headerShown: false, animation: "slide_from_right" }} 
+                options={{ headerShown: true, title:"Add Contact", headerTitle: "Add Contact", animation: "slide_from_right" }} 
                 name={routes.createContacts}
                 component={AddContact}
             />

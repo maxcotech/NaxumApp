@@ -8,3 +8,7 @@ export const login =  async (data: LoginData): Promise<any> => {
 export const  updateAccount = async (data: AccountFormData): Promise<any> => {
     return client.put("accounts",data);
 }
+
+export const logout = async (): Promise<any> => {
+    return client.patch(`accounts/logout`,{});
+}
