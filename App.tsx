@@ -1,5 +1,5 @@
 import React from "react";
-import { NativeBaseProvider, extendTheme } from "native-base";
+import { NativeBaseProvider, extendTheme, Drawer } from "native-base";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { NavigationContainer } from "@react-navigation/native";
 import IndexNavigation from "./src/navigations/IndexNavigation";
@@ -9,6 +9,8 @@ import Toast from 'react-native-toast-notifications';
 import AppContext from './src/contexts/AppContext';
 import client from "./src/config/client.config";
 import 'expo-dev-client';
+import { LogBox } from "react-native";
+import DrawerNavigation from './src/navigations/DrawerNavigation';
 
 // Define the config
 const config = {
@@ -37,6 +39,7 @@ export function AppComponent() {
     if(appContext.authData?.token !== undefined && appContext.authData?.token !== null){
       client.defaults.headers.common['Authorization'] = "Bearer "+appContext.authData?.token;
     }
+    //LogBox.ignoreAllLogs()
   },[appContext.authData?.token])
   return ( 
       <QueryClientProvider client={queryClient} >

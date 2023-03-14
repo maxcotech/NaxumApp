@@ -3,6 +3,7 @@ import { UserStatuses, UserTypes } from "../enum.config"
 
 export interface Account {
     id: number,
+    profile_image_url: null | string,
     full_name: string,
     user_name: string,
     contact_number: string,
@@ -26,4 +27,14 @@ export interface AuthData {
 export interface LoginData {
     user_name: string,
     password: string
+}
+
+export interface AccountFormData {
+    id?: number,
+    full_name: string,
+    user_name: string,
+    contact_number: string,
+    email: string,
+    password: string,
+    confirm_password: string
 }

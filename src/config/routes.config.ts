@@ -1,11 +1,16 @@
 import { ParamListBase } from "@react-navigation/native"
 
 const GeneralRoutes = {
-    login: "auth/login"
+    login: "auth/login",
+    home: "home",
+    logout: "logout",
+    drawer: "drawer",
+    createContacts: "createContact"
 }
 
 const AccountRoutes = {
-    accountList: "accounts/list"
+    accountList: "accounts/list",
+    accountProfile: "account/profile"
 }
 
 const routes = {

@@ -7,6 +7,7 @@ import { UserTypes } from "../../config/enum.config";
 import { renderErrorText } from "../../helpers/message.helpers";
 import routes, { AppParamList } from './../../config/routes.config';
 import AppContext from './../../contexts/AppContext';
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 export default function Login(){
     const navigation = useNavigation<NativeStackNavigationProp<typeof AppParamList>>();
@@ -15,13 +16,14 @@ export default function Login(){
         user_name: "",
         password: ""
     })
+    const [passwordVisible,setPasswordVisible] = useState(false);
     const [errors,setErrors] = useState(formState);
     const {isLoading,mutate} = useLogin({
         onSuccess: (data) => {
-            if(data.data.user.user_type === UserTypes.superAdmin){
+            if(data.data.user.user_type === UserTypes.customer){
                 toast.show(data.message, {type:"success"});
                 appContext.setAuthData(data.data);
-                navigation.replace(routes.accountList);
+                navigation.replace(routes.drawer);
             } else {
                 toast.show("Sorry , your account is not supported.",{type:"danger"});
             }
@@ -32,22 +34,23 @@ export default function Login(){
         }
     })
 
-    return <View flex={1}>
-        <Center px={"15px"} mx={"auto"} mt={100} w={["100%","70%","40%"]}>
-            <Text fontSize="xl" fontWeight={"bold"}>Sign In</Text>
+    return <View flex={1} backgroundColor="white">
+        <Center px={"15px"} mx={"auto"} mt={150} w={["100%","70%","40%"]}>
+            
             <Box w="100%">
                 <Box my={3}>
-                    <Text mb={1} fontSize="md">User Name</Text>
-                    <Input _web={{fontSize:"14px"}} onChangeText={(user_name) => setFormState({...formState,user_name})}  placeholder="Enter Email or user name"  value={formState.user_name}  />
+                   
+                    <Input leftElement={<Box ml={2}><MaterialIcons style={{color:"gray"}} size={18} name="person" /></Box>} fontSize="md" placeholderTextColor={"skyblue"} borderWidth={0} borderBottomWidth={2} onChangeText={(user_name) => setFormState({...formState,user_name})}   placeholder="Username"  value={formState.user_name}  />
                     <Text color="red.400">{renderErrorText(errors?.user_name)}</Text>
                 </Box>
                 <Box my={3}>
-                    <Text mb={1} fontSize="md">Password</Text>
-                    <Input _web={{fontSize:"14px"}} onChangeText={(password) => setFormState({...formState,password})}  secureTextEntry={true} placeholder="Enter your password"  value={formState.password}  />
+                    
+                    
+                    <Input rightElement={<Box mr={2}><MaterialIcons onPress={() => setPasswordVisible(!passwordVisible)} size={18} name={(passwordVisible)? "visibility-off":"visibility"} /></Box>} leftElement={<Box ml={2}><MaterialIcons style={{color:"gray"}} size={18} name="lock" /></Box>} fontSize="md" placeholderTextColor={"skyblue"} borderWidth={0} borderBottomWidth={2} onChangeText={(password) => setFormState({...formState,password})}  secureTextEntry={!passwordVisible} placeholder="Password"  value={formState.password}  />
                     <Text color="red.400">{renderErrorText(errors?.password)}</Text>
                 </Box>
                 <Box mt={10}>
-                    <Button isLoading={isLoading} onPress={() => mutate(formState)}>Submit</Button>
+                    <Button py={3} isLoading={isLoading} onPress={() => mutate(formState)}>LOGIN</Button>
                 </Box>
             </Box>
         </Center>

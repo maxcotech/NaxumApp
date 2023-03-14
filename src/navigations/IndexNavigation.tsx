@@ -3,21 +3,49 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import routes from './../config/routes.config';
 import Login from './../screens/Login/Login';
 import AccountsList from '../screens/AccountsList/AccountsList';
+import Home from "../screens/Home/Home";
+import DrawerNavigation from './DrawerNavigation';
+import AddContact from './../screens/AddContact/AddContact';
+import Profile from "../screens/Profile/Profile";
 
 const Stack = createNativeStackNavigator();
 export default function IndexNavigation(){
     return (
-        <Stack.Navigator >
+        <Stack.Navigator initialRouteName={routes.login}>
             <Stack.Screen 
                 options={{ headerShown: false, animation: "slide_from_right" }} 
                 name={routes.login}
                 component={Login}
             />
+            {/* <Stack.Screen
+                options={{ headerShown: false, animation: "slide_from_right" }} 
+                name={routes.home}
+                component={Home}
+            /> */}
             <Stack.Screen
                 options={{ headerShown: false, animation: "slide_from_right" }} 
                 name={routes.accountList}
                 component={AccountsList}
             />
+            <Stack.Screen 
+                options={{ headerShown: false, animation: "slide_from_right" }} 
+                name={routes.drawer}
+                component={DrawerNavigation}
+            />
+            <Stack.Screen 
+                options={{ headerShown: false, animation: "slide_from_right" }} 
+                name={routes.createContacts}
+                component={AddContact}
+            />
+            <Stack.Screen 
+                options={{ headerShown: true, headerTitle: "Profile", title:"Profile", animation: "slide_from_right" }} 
+                name={routes.accountProfile}
+                component={Profile}
+            />
+
+
+            
+            
         </Stack.Navigator>
     )
 }

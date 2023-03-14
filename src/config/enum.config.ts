@@ -13,3 +13,9 @@ export enum UserStatuses {
     inactive = 0,
     readOnly = 2,
 }
+
+export enum ProfileTabOptions {
+    Profile = 1,
+    Social = 2,
+    Links = 3
+}
