@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 export default function IndexNavigation(){
     return (
         <Stack.Navigator initialRouteName={routes.login}>
+        
             <Stack.Screen 
                 options={{ headerShown: false, animation: "slide_from_right" }} 
                 name={routes.login}

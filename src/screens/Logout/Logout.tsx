@@ -4,6 +4,7 @@ import AppContext from "../../contexts/AppContext";
 import { useNavigation } from '@react-navigation/native';
 import { AuthData } from "../../config/data_types/account_types";
 import { useLogoutAccount } from "../../api/queries/account.queries";
+import routes from "../../config/routes.config";
 
 export default function Logout(){
     const appContext = React.useContext(AppContext);
@@ -12,7 +13,7 @@ export default function Logout(){
         onSuccess: (data) => {
             appContext.setAuthData({} as AuthData);
             toast.show(data.message,{type:"success"});
-            navigation.goBack();
+            navigation.navigate(routes.login as never);
         }
     })
 
